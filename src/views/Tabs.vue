@@ -1,26 +1,34 @@
 <script lang="ts" setup>
-import { defineAsyncComponent, shallowRef } from 'vue'
+import { defineAsyncComponent, shallowRef, provide, ref } from 'vue'
 
-const TabBuy = defineAsyncComponent(() => import('../../components/tabs2/TabBuy.vue'))
-const TabSell = defineAsyncComponent(() => import('../../components/tabs2/TabSell.vue'))
-const TabExchange = defineAsyncComponent(() => import('../../components/tabs2/TabExchange.vue'))
-const TabSend = defineAsyncComponent(() => import('../../components/tabs2/TabSend.vue'))
-const TabReceive = defineAsyncComponent(() => import('../../components/tabs2/TabReceive.vue'))
-const TabEarn = defineAsyncComponent(() => import('../../components/tabs2/TabEarn.vue'))
+const TabOne = defineAsyncComponent(() => import('../components/TabOne.vue'))
+const TabTwo = defineAsyncComponent(() => import('../components/TabTwo.vue'))
+const TabThree = defineAsyncComponent(() => import('../components/TabThree.vue'))
+
 const tabs = [
-  { component: TabBuy, title: "Comprar" },
-  { component: TabSell, title: "Vender" },
-  { component: TabExchange, title: "Intercambiar" },
-  { component: TabSend, title: "Enviar" },
-  { component: TabReceive, title: "Recibir" },
-  { component: TabEarn, title: "Ganar" }
+  { component: TabOne, title: "TabOne" },
+  { component: TabTwo, title: "TabTwo" },
+  { component: TabThree, title: "TabThree" }  
 ]
 
 const currentTab = shallowRef(tabs[0])
+
+const myRefOne = ref("myRefOne")
+const myRefTwo = ref("myRefTwo")
+const myRefThree = ref("myRefThree")
+const myFunction = (val) => console.log(val)
+
+provide('myKeyX', {
+  myRefOne,
+  myRefTwo,
+  myRefThree,
+  myFunction
+})
 </script>
 
 <template>
-  <div>    
+  <div>
+    <h1 class="text-xl font-semibold">Open browser console to test the tabs...</h1>
     <div class="myPanel">
       <div class="demo">
         <button
